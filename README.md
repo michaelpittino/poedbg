@@ -20,19 +20,19 @@ The _poedbg_ library currently only works on the Windows operating system, and i
 
 #### Library
 
-The latest compiled version of the library [can be found here](#).
+The latest compiled version of the library [can be found here](https://github.com/m4p3r/poedbg/blob/master/bin/poedbg.dll).
 
 #### C++ and C#
 
-You can find the C++ [sample code here](#).
+You can find the C++ [sample code here](https://github.com/m4p3r/poedbg/tree/master/samples/poedbg-cpp).
 
-You can find the C# [sample code here](#).
+You can find the C# [sample code here](https://github.com/m4p3r/poedbg/tree/master/samples/poedbg-csharp).
 
 For both of these samples, make sure that you build the project for the x64 architecture. Once built, simply make sure the latest _poedbg.dll_ is in the same folder as the new executable. Run the executable as administrator.
 
 #### Python
 
-You can find the Python [sample code here](#).
+You can find the Python [sample code here](https://github.com/m4p3r/poedbg/tree/master/samples/poedbg-python).
 
 You must make sure that you are using the 64-bit Python interpreter when running the script, or it will not correctly load _poedbg.dll_. Make sure that you run the console as administrator before executing the script. Also ensure that the latest _poedbg.dll_ is in the same folder as the script.
 
