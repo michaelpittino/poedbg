@@ -14,10 +14,7 @@ namespace poedbg_csharp
         public delegate void PoeDbgErrorCallback(int ErrorCode);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate void PoeDbgPacketSendCallback(int Length, byte Id, byte[] Data);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate void PoeDbgPacketReceiveCallback(int Length, byte Id, byte[] Data);
+        public delegate void PoeDbgPacketCallback(int Length, byte Id, byte[] Data);
 
         // Next we need to reference all of the functions we will import
         // from poedbg.
@@ -26,13 +23,16 @@ namespace poedbg_csharp
         public static extern int PoeDbgInitialize();
 
         [DllImport("poedbg.dll")]
+        public static extern int PoeDbgDestroy();
+
+        [DllImport("poedbg.dll")]
         public static extern int PoeDbgRegisterErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] PoeDbgErrorCallback Callback);
 
         [DllImport("poedbg.dll")]
-        public static extern int PoeDbgRegisterPacketSendCallback([MarshalAs(UnmanagedType.FunctionPtr)] PoeDbgPacketSendCallback Callback);
+        public static extern int PoeDbgRegisterPacketSendCallback([MarshalAs(UnmanagedType.FunctionPtr)] PoeDbgPacketCallback Callback);
 
         [DllImport("poedbg.dll")]
-        public static extern int PoeDbgRegisterPacketReceiveCallback([MarshalAs(UnmanagedType.FunctionPtr)] PoeDbgPacketReceiveCallback Callback);
+        public static extern int PoeDbgRegisterPacketReceiveCallback([MarshalAs(UnmanagedType.FunctionPtr)] PoeDbgPacketCallback Callback);
 
         [DllImport("poedbg.dll")]
         public static extern int PoeDbgUnregisterErrorCallback();
@@ -56,13 +56,13 @@ namespace poedbg_csharp
                 Console.WriteLine("[ERROR] The 'poedbg' module reported an error code of '{0}'.", ErrorCode);
             };
 
-            PoeDbgPacketSendCallback SendCallback =
+            PoeDbgPacketCallback SendCallback =
             (Length, Id, Data) =>
             {
                 Console.WriteLine("[SENT] Packet with ID of '{0}' and length of '{1}'.", Id, Length);
             };
 
-            PoeDbgPacketReceiveCallback ReceiveCallback =
+            PoeDbgPacketCallback ReceiveCallback =
             (Length, Id, Data) =>
             {
                 Console.WriteLine("[RECEIVED] Packet with ID of '{0}' and length of '{1}'.", Id, Length);
@@ -97,6 +97,17 @@ namespace poedbg_csharp
             }
 
             Console.WriteLine("Started successfully.");
+
+            // Wait.
+            Console.ReadKey(true);
+
+            Status = PoeDbgDestroy();
+            if (Status < 0)
+            {
+                Console.WriteLine("[ERROR] Could not destroy. Error code: '{0}'.", Status);
+            }
+
+            Console.WriteLine("Removed successfully.");
 
             // Wait.
             Console.ReadKey(true);

@@ -51,7 +51,15 @@ def main():
     # If we let the main thread die, our game hooks will be un-set. This
     # will crash the game.
 
-    raw_input("(Pressing a key will end the program)...")
+    raw_input("(Pressing a key will disable poedbg)...")
+
+    poedbg_status = poedbg_dll.PoeDbgDestroy()
+    if poedbg_status < 0:
+        print("[ERROR] Could not destroy. Error code: '{0}'.".format(poedbg_status))
+
+    print("Removed successfully.")
+
+    raw_input("(Pressing a key will quit)...")
 
 if __name__ == "__main__":
     main()
