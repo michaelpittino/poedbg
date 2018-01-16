@@ -1,8 +1,9 @@
 ![poedbg](misc/images/logo.jpg?raw=true "poedbg")
+---
 
-Using a custom ring3 debugging engine tailored specifically to the game, _poedbg_ provides you with a simple API to interact with the [Path of Exile](http://www.pathofexile.com) game client for tasks like packet logging, memory manipulation, and more. Even better - all in your favorite languages. This project continues to be a work in progress.
+A simple API to interact with the [Path of Exile](http://www.pathofexile.com) game client for tasks like packet logging, memory manipulation, and more. Even better - all in your favorite languages. This project continues to be a work in progress.
 
-While the _poedbg_ library on its own does not provide any explicit competitive advantage, it may still be against the game's terms of service. Use it at your own risk.
+While this software is not intended to provide any explicit competitive advantage, it may still be against the game's terms of service. Please use it responsibly, and at your own risk.
 
 ### Supported Features and Languages
 
