@@ -1,4 +1,4 @@
-# poedbg
+![poedbg](misc/images/logo.jpg?raw=true "poedbg")
 
 Using a custom ring3 debugging engine tailored specifically to the game, _poedbg_ provides you with a simple API to interact with the [Path of Exile](http://www.pathofexile.com) game client for tasks like packet logging, memory manipulation, and more. Even better - all in your favorite languages. This project continues to be a work in progress.
 
