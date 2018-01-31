@@ -1,4 +1,4 @@
-![poedbg](misc/images/logo.jpg?raw=true "poedbg")
+![poedbg](misc/images/logo.png?raw=true "poedbg")
 ---
 
 A simple API to interact with the [Path of Exile](http://www.pathofexile.com) game client for tasks like packet logging, memory manipulation, and more. Even better - all in your favorite languages. This project continues to be a work in progress.
@@ -52,15 +52,18 @@ Value | Name | Description
 -6 | `POEDBG_STATUS_CACHE_NT_HEADER_INVALID` | The NT header located was not valid.
 -7 | `POEDBG_STATUS_CACHE_ALLOCATION_FAILED` | The library was unable to cache sufficient memory in the host application. There may be memory pressure in your application that is preventing the library from caching.
 -8 | `POEDBG_STATUS_CACHE_COPY_FAILED` | The library was unable to cache data from the game into the host application. There may be a permissions problem with your application.
--9 | `POEDBG_STATUS_HOOK_SEND_FAILED` | The game's send() hook location was not found or could not be applied. This could be due to a game update or running an altered version of the game.
--10 | `POEDBG_STATUS_HOOK_RECV_FAILED` | The game's recv() hook location was not found or could not be applied. This could be due to a game update or running an altered version of the game.
--11 | `POEDBG_STATUS_HOOK_WSARECV_FAILED` | The game's WSArecv() hook location was not found or could not be applied. This could be due to a game update or running an altered version of the game.
+-9 | `POEDBG_STATUS_HOOK_SEND_FAILED` | The game's send() hook location could not be applied.
+-10 | `POEDBG_STATUS_HOOK_RECV_FAILED` | The game's recv() hook location could not be applied.
+-11 | `POEDBG_STATUS_HOOK_WSARECV_FAILED` | The game's WSArecv() hook location could not be applied.
 -12 | `POEDBG_STATUS_GAME_NOT_FOUND` | The game is not running.
 -13 | `POEDBG_STATUS_GAME_HOOK_NOT_SET` | The debugging engine could not be attached to the game.
 -14 | `POEDBG_STATUS_GAME_HOOK_BEHAVIOR_NOT_SET` | The debugger behavior could not be adjusted.
 -15 | `POEDBG_STATUS_CALLBACK_NOT_SUPPORTED` | The provided callback is not supported.
 -16 | `POEDBG_STATUS_CALLBACK_ALREADY_REGISTERED` | The provided callback is already registered.
 -17 | `POEDBG_STATUS_EXCEPTION_NOT_HANDLED` | The library detected a second-chance unhandled exception and the game can not recover.
+-18 | `POEDBG_STATUS_HOOK_PROPERTIES_SEND_FAILED` | The game's send() hook location was not found. This could be due to a game update or running an altered version of the game.
+-19 | `POEDBG_STATUS_HOOK_PROPERTIES_RECV_FAILED` | The game's recv() hook location was not found. This could be due to a game update or running an altered version of the game.
+-20 | `POEDBG_STATUS_HOOK_PROPERTIES_WSARECV_FAILED` | The game's WSArecv() hook location was not found. This could be due to a game update or running an altered version of the game.
 
 ### License
 
