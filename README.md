@@ -62,19 +62,8 @@ Value | Name | Description
 -16 | `POEDBG_STATUS_CALLBACK_ALREADY_REGISTERED` | The provided callback is already registered.
 -17 | `POEDBG_STATUS_EXCEPTION_NOT_HANDLED` | The library detected a second-chance unhandled exception and the game can not recover.
 
-### Donations
-
-I mainly do this for fun, but if you'd like to show your appreciation via a small donation, you're welcome to send donations to any of these wallet addresses:
-
-```
-Bitcoin: 18fMKKzSZYJ6JGfrdUQZbw5AmY7qjADu6h
-Bitcoin Cash: 19mZN2hLNTjhgM4oF9iAhRjZmcu7mrZvuH
-Ethereum: 0xDD86F0C5Db3f5FecCB5850Deed6d9b7c27064c5b
-Litecoin: LgzXydJ2DDxzkBXpMHRpvRbRqve7MC2foZ
-```
-
 ### License
 
-You are free to use this software as you see fit. Please keep in mind that some uses of this software may be a violation of the game's terms of service, which I am not condoning.
+You are free to use this software as you see fit. Please keep in mind that some uses of this software may be a violation of the game's terms of service, which you do at your own risk.
 
 If you do use this software, please retain the attribution to _poedbg_ in your source files, and consider open sourcing your own work to help the community learn and grow.
