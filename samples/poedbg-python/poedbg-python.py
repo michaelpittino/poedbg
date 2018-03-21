@@ -11,13 +11,23 @@ import sys
 def poedbg_error_callback(error_code):
     print("[ERROR] The 'poedbg' module reported an error code of '{}'.".format(error_code))
 
-@ctypes.WINFUNCTYPE(None, ctypes.c_int, ctypes.c_byte, ctypes.c_char_p)
+@ctypes.WINFUNCTYPE(None, ctypes.c_int, ctypes.c_byte, ctypes.c_void_p)
 def poedbg_packet_receive_callback(packet_length, packet_id, packet_data):
     print("[RECEIVED] Packet with ID of '{}' and length of '{}'.".format(packet_id, packet_length))
 
-@ctypes.WINFUNCTYPE(None, ctypes.c_int, ctypes.c_byte, ctypes.c_char_p)
+    data = ctypes.cast(packet_data, ctypes.POINTER(ctypes.c_char * packet_length))
+    for b in data.contents:
+        sys.stdout.write("{:02x} ".format(ord(b)))
+    print("")
+
+@ctypes.WINFUNCTYPE(None, ctypes.c_int, ctypes.c_byte, ctypes.c_void_p)
 def poedbg_packet_send_callback(packet_length, packet_id, packet_data):
     print("[SENT] Packet with ID of '{}' and length of '{}'.".format(packet_id, packet_length))
+    
+    data = ctypes.cast(packet_data, ctypes.POINTER(ctypes.c_char * packet_length))
+    for b in data.contents:
+        sys.stdout.write("{:02x} ".format(ord(b)))
+    print("")
 
 
 def main():
