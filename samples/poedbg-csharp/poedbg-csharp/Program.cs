@@ -1,11 +1,12 @@
 ﻿// Part of 'poedbg'. Copyright (c) 2018 maper. Copies must retain this attribution.
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace poedbg_csharp
 {
-    class Program
+    unsafe class Program
     {
         // First we need to define types for the callbacks that we're going
         // to register with poedbg.
@@ -14,7 +15,7 @@ namespace poedbg_csharp
         public delegate void PoeDbgErrorCallback(int ErrorCode);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate void PoeDbgPacketCallback(int Length, byte Id, byte[] Data);
+        public delegate void PoeDbgPacketCallback(int Length, byte Id, byte* Data);
 
         // Next we need to reference all of the functions we will import
         // from poedbg.
@@ -43,6 +44,21 @@ namespace poedbg_csharp
         [DllImport("poedbg.dll")]
         public static extern int PoeDbgUnregisterPacketReceiveCallback();
 
+        static void PrintPacketData(byte* Data, int Length)
+        {
+            // Create a stream to read from the unmanaged memory.
+            UnmanagedMemoryStream Stream = new UnmanagedMemoryStream(Data, Length);
+
+            // Create a local array to copy to.
+            byte[] LocalData = new byte[Length];
+
+            // Copy the unmanaged memory.
+            Stream.Read(LocalData, 0, Length);
+
+            // Print the data.
+            Console.WriteLine(BitConverter.ToString(LocalData).Replace("-", " "));
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Starting 'poedbg' C# sample...");
@@ -60,12 +76,16 @@ namespace poedbg_csharp
             (Length, Id, Data) =>
             {
                 Console.WriteLine("[SENT] Packet with ID of '{0}' and length of '{1}'.", Id, Length);
+
+                PrintPacketData(Data, Length);
             };
 
             PoeDbgPacketCallback ReceiveCallback =
             (Length, Id, Data) =>
             {
                 Console.WriteLine("[RECEIVED] Packet with ID of '{0}' and length of '{1}'.", Id, Length);
+
+                PrintPacketData(Data, Length);
             };
 
             // Now we'll register all of our callbacks. It is important, especially,
