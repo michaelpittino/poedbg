@@ -1,5 +1,4 @@
-poedbg
----
+# poedbg
 
 A simple API to interact with the [Path of Exile](http://www.pathofexile.com) game client for tasks like packet logging, memory manipulation, and more. Even better - all in your favorite languages. This project continues to be a work in progress.
 
